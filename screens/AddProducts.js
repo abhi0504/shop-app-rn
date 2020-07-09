@@ -1,13 +1,16 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function App() {
+const AddProducts = () => {
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text>1</Text>
     </View>
   );
 }
+
+export default AddProducts
 
 const styles = StyleSheet.create({
   container: {
