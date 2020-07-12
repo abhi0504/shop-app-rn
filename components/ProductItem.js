@@ -17,16 +17,20 @@ const ProductItem = props => {
         <Text style={styles.price}>${props.price.toFixed(2)}</Text>
       </View>
       <View style={styles.actions}>
-        <Button
+        <View style={styles.button}>
+          <Button
           color={Colors.primary}
           title="View Details"
           onPress={() => {}}
         />
-        <Button
+        </View>
+        <View style={styles.button}>
+          <Button
           color={Colors.primary}
           title="To Cart"
           onPress={() => {}}
         />
+        </View> 
       </View>
     </View>
     </TouchableNativeFeedback>
@@ -45,7 +49,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: 'white',
     height: 300,
-    margin: 20
+    width: 185,
+    margin: 5
   },
   imageContainer: {
     width: '100%',
@@ -73,7 +78,7 @@ const styles = StyleSheet.create({
   },
   actions: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
     height: '25%',
     paddingHorizontal: 20
@@ -81,6 +86,9 @@ const styles = StyleSheet.create({
   mainContainer: {
     borderRadius: 10,
     overflow: "hidden"
+  },
+  button: {
+    margin: 5
   }
 });
 
