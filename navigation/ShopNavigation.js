@@ -12,7 +12,7 @@ import ProductDetails from '../screens/ProductDetails'
 import ProductsOverview from '../screens/ProductsOverview'
 import AddProducts from '../screens/AddProducts'
 import Cart from '../screens/Cart'
-
+import Colors from '../constants/Colors'
 
 const ShopNavigation = createStackNavigator({
     Products : {
@@ -43,7 +43,7 @@ const MainNavigator = createDrawerNavigator({
 },
 {
     contentOptions: {
-        activeTintColor: 'green',
+        activeTintColor: Colors.primary,
       }
 }
 )
