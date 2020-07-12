@@ -44,7 +44,19 @@ ProductsOverview.navigationOptions = (navData) => {
                         navData.navigation.toggleDrawer();
                     }}
                 />
-            </HeaderButtons>)
+            </HeaderButtons>),
+        headerRight: (
+            <HeaderButtons>
+                <Item
+                    title="cart"
+                    iconName="ios-cart"
+                    onPress={() => {
+                        navData.navigation.navigate("CartScreen")
+                    }}    
+                />
+            </HeaderButtons>
+        )
+        
 
     }
 }
