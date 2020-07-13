@@ -21,7 +21,7 @@ const ProductItem = props => {
           <Button
           color={Colors.primary}
           title="View Details"
-          onPress={() => {}}
+          onPress={props.onViewDetail}
         />
         </View>
         <View style={styles.button}>

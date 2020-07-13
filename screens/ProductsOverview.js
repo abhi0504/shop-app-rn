@@ -1,22 +1,27 @@
 import React from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { useSelector } from 'react-redux'
 
-import PRODUCTS from '../data/dummy-data'
 import HeaderButtonComponent from '../components/HeaderButton'
 import ProductItem from '../components/ProductItem'
 import Colors from '../constants/Colors'
 
-const ProductsOverview = (navigation) => {
+const ProductsOverview = (props) => {
+
+    const productsData = useSelector(state => state.shop.products)
 
     return (
         <FlatList
-            data={PRODUCTS}
+            data={productsData}
             numColumns={2}
             renderItem={itemData => (<ProductItem
                 image={itemData.item.imageUrl}
                 title={itemData.item.title}
                 price={itemData.item.price}
+                onViewDetail={() => {
+                    props.navigation.navigate('ProductDetail' , { id : itemData.item.id });
+                }}
             />)}
         />
     );
@@ -52,11 +57,11 @@ ProductsOverview.navigationOptions = (navData) => {
                     iconName="ios-cart"
                     onPress={() => {
                         navData.navigation.navigate("CartScreen")
-                    }}    
+                    }}
                 />
             </HeaderButtons>
         )
-        
+
 
     }
 }
