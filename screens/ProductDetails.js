@@ -1,14 +1,17 @@
 import React from 'react';
 import { StyleSheet, Text, View , ScrollView , Image , Button } from 'react-native';
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
 
 import Colors from '../constants/Colors'
+import * as cartActions from '../store/actions/shop'
 
 const ProductDetails = (props) => {
 
   const productId = props.navigation.getParam('id');
   const Allproducts = useSelector(state => state.shop.products);
   const selectedProduct = Allproducts.find(item => item.id === productId);
+
+  const dispatch = useDispatch();
 
   return (
     <ScrollView>

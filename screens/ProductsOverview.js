@@ -22,6 +22,7 @@ const ProductsOverview = (props) => {
                 onViewDetail={() => {
                     props.navigation.navigate('ProductDetail' , { id : itemData.item.id });
                 }}
+                
             />)}
         />
     );

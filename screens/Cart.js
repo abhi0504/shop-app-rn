@@ -1,3 +1,5 @@
+
+
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -5,7 +7,7 @@ const Cart = () => {
 
   return (
     <View style={styles.container}>
-      <Text>2</Text>
+      <Text>Hi welcome to the cart screen</Text>
     </View>
   );
 }
