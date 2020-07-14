@@ -14,7 +14,7 @@ const ProductItem = props => {
       </View>
       <View style={styles.details}>
         <Text style={styles.title}>{props.title}</Text>
-        <Text style={styles.price}>${props.price.toFixed(2)}</Text>
+        <Text style={styles.price}>₹{props.price.toFixed(2)} INR</Text>
       </View>
       <View style={styles.actions}>
         <View style={styles.button}>
@@ -28,7 +28,7 @@ const ProductItem = props => {
           <Button
           color={Colors.primary}
           title="To Cart"
-          onPress={() => {}}
+          onPress={props.onAddToCart}
         />
         </View> 
       </View>
