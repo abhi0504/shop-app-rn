@@ -7,7 +7,7 @@ const initialState = {
   products: PRODUCTS,
   totalAmount: 0,
   items: {},
-  orders : {}
+  orders : []
 };
 
 const shopReducer = (state = initialState, action) => {

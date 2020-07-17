@@ -57,12 +57,11 @@ const styles = StyleSheet.create({
     marginBottom: 15
   },
   totalAmount: {
-    fontFamily: 'open-sans-bold',
+    fontWeight: 'bold',
     fontSize: 16
   },
   date: {
     fontSize: 16,
-    fontFamily: 'open-sans',
     color: '#888'
   },
   detailItems: {

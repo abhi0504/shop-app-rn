@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, Text, Platform } from 'react-native';
+import { FlatList, Text, Platform, View } from 'react-native';
 import { useSelector } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
@@ -7,10 +7,11 @@ import HeaderButton from '../components/HeaderButton';
 import OrderItem from '../components/OrderItem';
 
 const OrdersScreen = props => {
-  const orders = useSelector(state => state.orders.orders);
+  const orders = useSelector(state => state.shop.orders);
 
   return (
-    <FlatList
+    <View>
+          <FlatList
       data={orders}
       keyExtractor={item => item.id}
       renderItem={itemData => (
@@ -21,10 +22,12 @@ const OrdersScreen = props => {
         />
       )}
     />
-  );
-};
-
-OrdersScreen.navigationOptions = navData => {
+    </View>
+    );
+  };
+  
+OrdersScreen.navigationOptions = (navData) => {
+  
   return {
     headerTitle: 'Your Orders',
     headerLeft: (
@@ -41,4 +44,7 @@ OrdersScreen.navigationOptions = navData => {
   };
 };
 
+  
 export default OrdersScreen;
+
+
