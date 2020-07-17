@@ -6,11 +6,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import HeaderButtonComponent from '../components/HeaderButton'
 import ProductItem from '../components/ProductItem'
 import Colors from '../constants/Colors'
-import * as cartActions from '../store/actions/shop'
+import * as cartActions from '../store/actions/cart';
 
 const ProductsOverview = (props) => {
 
-    const productsData = useSelector(state => state.shop.products)
+    const productsData = useSelector(state => state.products.availableProducts)
 
     const dispatch = useDispatch();
 

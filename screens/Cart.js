@@ -4,22 +4,24 @@ import { useSelector , useDispatch } from 'react-redux';
 
 import Colors from '../constants/Colors';
 import CartItem from '../components/CartItem';
-import * as cartActions from '../store/actions/shop'
+import * as cartActions from '../store/actions/cart'
+import * as ordersActions from '../store/actions/orders';
+
 
 const CartScreen = props => {
 
   const dispatch = useDispatch();
 
-  const cartTotalAmount = useSelector(state => state.shop.totalAmount);
+  const cartTotalAmount = useSelector(state => state.cart.totalAmount);
   const cartItems = useSelector(state => {
     const transformedCartItems = [];
-    for (const key in state.shop.items) {
+    for (const key in state.cart.items) {
       transformedCartItems.push({
         productId: key,
-        productTitle: state.shop.items[key].productTitle,
-        productPrice: state.shop.items[key].productPrice,
-        quantity: state.shop.items[key].quantity,
-        sum: state.shop.items[key].sum
+        productTitle: state.cart.items[key].productTitle,
+        productPrice: state.cart.items[key].productPrice,
+        quantity: state.cart.items[key].quantity,
+        sum: state.cart.items[key].sum
       });
     }
     return transformedCartItems;
@@ -37,7 +39,7 @@ const CartScreen = props => {
           title="Order Now"
           disabled={cartItems.length === 0}
           onPress={() => {
-            dispatch(cartActions.saveOrder(cartItems , cartTotalAmount))
+            dispatch(ordersActions.addOrder(cartItems , cartTotalAmount))
           }}
         />
       </View>

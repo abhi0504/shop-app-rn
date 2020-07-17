@@ -1,16 +1,13 @@
-import PRODUCTS from '../../data/dummy-data'
-import { ADD_TO_CART, REMOVE_FROM_CART ,SAVE_TO_CART } from '../actions/shop'
-import CartItem from '../../models/cart-item'
-import Order from '../../models/order'
+import { ADD_TO_CART, REMOVE_FROM_CART } from '../actions/cart';
+import { ADD_ORDER } from '../actions/orders';
+import CartItem from '../../models/cart-item';
 
 const initialState = {
-  products: PRODUCTS,
-  totalAmount: 0,
   items: {},
-  orders : []
+  totalAmount: 0
 };
 
-const shopReducer = (state = initialState, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART:
       const addedProduct = action.product;
@@ -35,7 +32,6 @@ const shopReducer = (state = initialState, action) => {
         items: { ...state.items, [addedProduct.id]: updatedOrNewCartItem },
         totalAmount: state.totalAmount + prodPrice
       };
-
     case REMOVE_FROM_CART:
       const selectedCartItem = state.items[action.pid];
       const currentQty = selectedCartItem.quantity;
@@ -58,22 +54,9 @@ const shopReducer = (state = initialState, action) => {
         items: updatedCartItems,
         totalAmount: state.totalAmount - selectedCartItem.productPrice
       };
-
-      case SAVE_TO_CART: 
-      const newOrder = new Order(
-        new Date().toString(),
-        action.orderData.items,
-        action.orderData.amount,
-        new Date()
-      );
-      return {
-        ...state,
-        orders: state.orders.concat(newOrder)
-      };
-       
+    case ADD_ORDER:
+      return initialState;
   }
 
   return state;
-}
-
-export default shopReducer;
+};

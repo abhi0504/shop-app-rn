@@ -7,7 +7,7 @@ import HeaderButton from '../components/HeaderButton';
 import OrderItem from '../components/OrderItem';
 
 const OrdersScreen = props => {
-  const orders = useSelector(state => state.shop.orders);
+  const orders = useSelector(state => state.orders.orders);
 
   return (
     <View>

@@ -3,11 +3,15 @@ import { StyleSheet, Text, View } from 'react-native';
 import { createStore , combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 
-import shopReducer from './store/reducers/shop'
+import ordersReducer from './store/reducers/orders'
+import cartReducer from './store/reducers/cart'
+import productsReducer from './store/reducers/products';
 import ShopNavigation from './navigation/ShopNavigation'
 
 const rootReducer = combineReducers({
-  shop : shopReducer
+  orders : ordersReducer,
+  cart : cartReducer,
+  products: productsReducer
 })
 
 const store = createStore(rootReducer);
