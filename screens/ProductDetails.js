@@ -8,7 +8,7 @@ import * as cartActions from '../store/actions/cart';
 const ProductDetails = (props) => {
 
   const productId = props.navigation.getParam('id');
-  const Allproducts = useSelector(state => state.products.products);
+  const Allproducts = useSelector(state => state.products.availableProducts);
   const selectedProduct = Allproducts.find(item => item.id === productId);
 
   const dispatch = useDispatch();
