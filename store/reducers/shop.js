@@ -1,11 +1,13 @@
 import PRODUCTS from '../../data/dummy-data'
-import { ADD_TO_CART, REMOVE_FROM_CART } from '../actions/shop'
+import { ADD_TO_CART, REMOVE_FROM_CART ,SAVE_TO_CART } from '../actions/shop'
 import CartItem from '../../models/cart-item'
+import Order from '../../models/order'
 
 const initialState = {
   products: PRODUCTS,
   totalAmount: 0,
-  items: {}
+  items: {},
+  orders : {}
 };
 
 const shopReducer = (state = initialState, action) => {
@@ -57,7 +59,20 @@ const shopReducer = (state = initialState, action) => {
         totalAmount: state.totalAmount - selectedCartItem.productPrice
       };
 
+      case SAVE_TO_CART: 
+      const newOrder = new Order(
+        new Date().toString(),
+        action.orderData.items,
+        action.orderData.amount,
+        new Date()
+      );
+      return {
+        ...state,
+        orders: state.orders.concat(newOrder)
+      };
+       
   }
+
   return state;
 }
 

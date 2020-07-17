@@ -30,12 +30,15 @@ const CartScreen = props => {
       <View style={styles.summary}>
         <Text style={styles.summaryText}>
           Total:{' '}
-          <Text style={styles.amount}>${cartTotalAmount.toFixed(2)}</Text>
+          <Text style={styles.amount}>Rs {cartTotalAmount.toFixed(2)}</Text>
         </Text>
         <Button
           color={Colors.accent}
           title="Order Now"
           disabled={cartItems.length === 0}
+          onPress={() => {
+            dispatch(cartActions.saveOrder(cartItems , cartTotalAmount))
+          }}
         />
       </View>
       <FlatList
