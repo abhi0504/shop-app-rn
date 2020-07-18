@@ -3,10 +3,10 @@ import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { useSelector, useDispatch } from 'react-redux';
 
-import HeaderButtonComponent from '../components/HeaderButton'
-import ProductItem from '../components/ProductItem'
-import Colors from '../constants/Colors'
-import * as cartActions from '../store/actions/cart';
+import HeaderButtonComponent from '../../components/HeaderButton'
+import ProductItem from '../../components/ProductItem'
+import Colors from '../../constants/Colors'
+import * as cartActions from '../../store/actions/cart';
 
 const ProductsOverview = (props) => {
 

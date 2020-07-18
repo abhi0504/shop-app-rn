@@ -7,12 +7,12 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { Ionicons } from '@expo/vector-icons';
 
 import HeaderButtonComponent from '../components/HeaderButton'
-import Orders from '../screens/Orders'
-import YourProducts from '../screens/YourProducts'
-import ProductDetails from '../screens/ProductDetails'
-import ProductsOverview from '../screens/ProductsOverview'
-import AddProducts from '../screens/AddProducts'
-import Cart from '../screens/Cart'
+import Orders from '../screens/shop/Orders'
+import UserProductScreen from '../screens/user/UserProductScreen'
+import ProductDetails from '../screens/shop/ProductDetails'
+import ProductsOverview from '../screens/shop/ProductsOverview'
+import EditProductScreen from '../screens/user/EditProductScreen'
+import Cart from '../screens/shop/Cart'
 import Colors from '../constants/Colors'
 
 const defaultNavOptions = {
@@ -79,7 +79,7 @@ const MainNavigator = createDrawerNavigator({
         screen: OrdersNavigator
     },
     manage : {
-     screen : AddProducts
+     screen : EditProductScreen
     }
 },
     {

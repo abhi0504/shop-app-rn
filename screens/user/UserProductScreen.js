@@ -1,16 +1,16 @@
 import React from 'react';
-import { StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
-const AddProducts = () => {
+const UserProductScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text>Hello asdfgyhuiohuiggh hdyt</Text>
+      <Text>6</Text>
     </View>
   );
 }
 
-export default AddProducts;
+export default UserProductScreen
 
 const styles = StyleSheet.create({
   container: {

@@ -2,10 +2,10 @@ import React from 'react';
 import { View, Text, FlatList, Button, StyleSheet } from 'react-native';
 import { useSelector , useDispatch } from 'react-redux';
 
-import Colors from '../constants/Colors';
-import CartItem from '../components/CartItem';
-import * as cartActions from '../store/actions/cart'
-import * as ordersActions from '../store/actions/orders';
+import Colors from '../../constants/Colors';
+import CartItem from '../../components/CartItem';
+import * as cartActions from '../../store/actions/cart'
+import * as ordersActions from '../../store/actions/orders';
 
 
 const CartScreen = props => {
