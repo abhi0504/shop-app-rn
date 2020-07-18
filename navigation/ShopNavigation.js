@@ -72,7 +72,8 @@ const OrdersNavigator = createStackNavigator(
 
   const AdminNavigator = createStackNavigator(
     {
-      UserProducts: UserProductScreen
+      UserProducts: UserProductScreen,
+      EditProduct : EditProductScreen
     },
     {
       navigationOptions: {
