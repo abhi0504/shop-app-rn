@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Button } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -14,22 +14,45 @@ const ProductsOverview = (props) => {
 
     const dispatch = useDispatch();
 
+    const selectItemHandler = (id , title) => {
+        props.navigation.navigate('ProductDetail', {
+            productId: id,
+            productTitle: title
+          });
+    }
+
     return (
         <FlatList
             data={productsData}
             numColumns={2}
-            renderItem={itemData => (<ProductItem
+            renderItem={itemData => (
+            <ProductItem
                 image={itemData.item.imageUrl}
                 title={itemData.item.title}
                 price={itemData.item.price}
-                onViewDetail={() => {
-                    props.navigation.navigate('ProductDetail' , { id : itemData.item.id });
+                onSelect={() => {
+                    selectItemHandler(itemData.item.id, itemData.item.title);
                 }}
-                onAddToCart={() => {
-                    dispatch(cartActions.addToCart(itemData.item))
-                }}
-                
-            />)}
+            >
+                <View style={styles.button}>
+                    <Button
+                        color={Colors.primary}
+                        title="View Details"
+                        onPress={() => {
+                            selectItemHandler(itemData.item.id, itemData.item.title);
+                        }}
+                    />
+                </View>
+                <View style={styles.button}>
+                    <Button
+                        color={Colors.primary}
+                        title="To Cart"
+                        onPress={() => {
+                            dispatch(cartActions.addToCart(itemData.item))
+                        }}
+                    />
+                </View>
+            </ProductItem>)}
         />
     );
 };
@@ -81,4 +104,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    button: {
+        margin: 5
+    }
 });

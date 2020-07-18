@@ -17,20 +17,7 @@ const ProductItem = props => {
         <Text style={styles.price}>₹{props.price.toFixed(2)} INR</Text>
       </View>
       <View style={styles.actions}>
-        <View style={styles.button}>
-          <Button
-          color={Colors.primary}
-          title="View Details"
-          onPress={props.onViewDetail}
-        />
-        </View>
-        <View style={styles.button}>
-          <Button
-          color={Colors.primary}
-          title="To Cart"
-          onPress={props.onAddToCart}
-        />
-        </View> 
+        {props.children}
       </View>
     </View>
     </TouchableNativeFeedback>
@@ -86,9 +73,6 @@ const styles = StyleSheet.create({
   mainContainer: {
     borderRadius: 10,
     overflow: "hidden"
-  },
-  button: {
-    margin: 5
   }
 });
 
