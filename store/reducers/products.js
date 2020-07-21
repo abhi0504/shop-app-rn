@@ -6,7 +6,6 @@ import {
 } from '../actions/products';
 import Product from '../../models/product';
 
-
 const initialState = {
   availableProducts: PRODUCTS,
   userProducts: PRODUCTS.filter(prod => prod.ownerId === 'u1')
@@ -59,8 +58,8 @@ export default (state = initialState, action) => {
           product => product.id !== action.pid
         ),
         availableProducts: state.availableProducts.filter(
-            product => product.id !== action.pid
-          ),
+          product => product.id !== action.pid
+        )
       };
   }
   return state;
