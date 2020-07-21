@@ -8,20 +8,18 @@ import {
   Platform
 } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import { useSelector , useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-import HeaderButton from '../../components/HeaderButton';
+import HeaderButton from '../../components/UI/HeaderButton';
 import * as productsActions from '../../store/actions/products';
-
-
 
 const EditProductScreen = props => {
   const prodId = props.navigation.getParam('productId');
   const editedProduct = useSelector(state =>
     state.products.userProducts.find(prod => prod.id === prodId)
-    );
-    
-    const dispatch = useDispatch();
+  );
+  const dispatch = useDispatch();
+
   const [title, setTitle] = useState(editedProduct ? editedProduct.title : '');
   const [imageUrl, setImageUrl] = useState(
     editedProduct ? editedProduct.imageUrl : ''
@@ -41,9 +39,8 @@ const EditProductScreen = props => {
         productsActions.createProduct(title, description, imageUrl, +price)
       );
     }
-    props.navigation.goBack()
-  }, [dispatch, prodId, title, description, imageUrl, price]
-  );
+    props.navigation.goBack();
+  }, [dispatch, prodId, title, description, imageUrl, price]);
 
   useEffect(() => {
     props.navigation.setParams({ submit: submitHandler });
@@ -119,7 +116,6 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   label: {
-    fontWeight: 'bold',
     marginVertical: 8
   },
   input: {

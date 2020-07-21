@@ -1,10 +1,10 @@
 import React from 'react';
-import { FlatList, Button, Platform, View ,StyleSheet , Alert } from 'react-native';
+import { FlatList, Button, Platform, Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
-import HeaderButton from '../../components/HeaderButton';
-import ProductItem from '../../components/ProductItem';
+import HeaderButton from '../../components/UI/HeaderButton';
+import ProductItem from '../../components/shop/ProductItem';
 import Colors from '../../constants/Colors';
 import * as productsActions from '../../store/actions/products';
 
@@ -12,56 +12,48 @@ const UserProductsScreen = props => {
   const userProducts = useSelector(state => state.products.userProducts);
   const dispatch = useDispatch();
 
-  const selectHandler = (id) => {
-    props.navigation.navigate('EditProduct' , { productId : id })
-  }
+  const editProductHandler = id => {
+    props.navigation.navigate('EditProduct', { productId: id });
+  };
 
   const deleteHandler = (id) => {
-    Alert.alert(
-      "Delete Product",
-      "Do you want to delete this item?",
-      [
-        {
-          text: "Yes",
-          style: "destructive",
-          onPress: () => {
-            dispatch(productsActions.deleteProduct(id))
-          },
-        },
-        { 
-          text: "No" ,
-          style: 'default'
+    Alert.alert('Are you sure?', 'Do you really want to delete this item?', [
+      { text: 'No', style: 'default' },
+      {
+        text: 'Yes',
+        style: 'destructive',
+        onPress: () => {
+          dispatch(productsActions.deleteProduct(id));
         }
-      ]
-    );
-
-  }
+      }
+    ]);
+  };
 
   return (
     <FlatList
       data={userProducts}
-      numColumns={2}
       keyExtractor={item => item.id}
       renderItem={itemData => (
         <ProductItem
           image={itemData.item.imageUrl}
           title={itemData.item.title}
           price={itemData.item.price}
-          onSelect={() =>  { selectHandler(itemData.item.id) } }
+          onSelect={() => {
+            editProductHandler(itemData.item.id);
+          }}
         >
-          <View style={styles.button}>
-            <Button 
-            color={Colors.primary} 
-            title="Edit" 
-            onPress={() => selectHandler(itemData.item.id)} />
-            </View>
-          <View style={styles.button}><Button
+          <Button
+            color={Colors.primary}
+            title="Edit"
+            onPress={() => {
+              editProductHandler(itemData.item.id);
+            }}
+          />
+          <Button
             color={Colors.primary}
             title="Delete"
-            onPress={() => {
-              deleteHandler(itemData.item.id)
-            }}
-          /></View>
+            onPress={deleteHandler.bind(this, itemData.item.id)}
+          />
         </ProductItem>
       )}
     />
@@ -97,16 +89,3 @@ UserProductsScreen.navigationOptions = navData => {
 };
 
 export default UserProductsScreen;
-
-
-const styles = StyleSheet.create({
-  container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-  },
-  button: {
-      margin: 5
-  }
-});
