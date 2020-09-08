@@ -1,10 +1,23 @@
 export const DELETE_PRODUCT = 'DELETE_PRODUCT';
 export const CREATE_PRODUCT = 'CREATE_PRODUCT';
 export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
+export const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
 
 export const deleteProduct = productId => {
   return { type: DELETE_PRODUCT, pid: productId };
 };
+
+export const fetchProducts = products => {
+  const response = await fetch('https://shop-rn-f2ff2.firebaseio.com/products.json' , {
+    body : JSON.stringify({
+      title,
+      description,
+      imageUrl,
+      price
+    })
+  })
+
+}
 
 export const createProduct = (title, description, imageUrl, price) => {
 
@@ -30,6 +43,7 @@ export const createProduct = (title, description, imageUrl, price) => {
     dispatch({
       type: CREATE_PRODUCT,
      productData: {
+       id:resData.name,
       title,
       description,
       imageUrl,
