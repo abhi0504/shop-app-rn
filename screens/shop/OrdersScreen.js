@@ -14,10 +14,13 @@ const OrdersScreen = props => {
   const dispatch = useDispatch();
   const [isLoading , setIsLoading] = useState(false);
 
-  useEffect(async () => {
+  useEffect( () => {
     setIsLoading(true);
-    await dispatch(orderActions.fetchOrders());
-    setIsLoading(false);
+     dispatch(orderActions.fetchOrders()).then(
+      () => {
+        setIsLoading(false);
+      }
+    );
   }, [dispatch]);
 
 

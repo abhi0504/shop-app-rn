@@ -18,6 +18,7 @@ import Colors from '../../constants/Colors';
 
 const ProductsOverviewScreen = props => {
   const [isLoading, setIsLoading] = useState(false);
+  const [isRefreshing, setIsRefreshing] = useState(false);
   const [error, setError] = useState();
   const products = useSelector(state => state.products.availableProducts);
   const dispatch = useDispatch();
@@ -25,14 +26,14 @@ const ProductsOverviewScreen = props => {
   const loadProducts = useCallback(async () => {
     console.log("munna bhaiya gaye ab");
     setError(null);
-    setIsLoading(true);
+    setIsRefreshing(true);
     try {
       await dispatch(productsActions.fetchProducts());
     } catch (err) {
       setError(err.message);
     }
-    setIsLoading(false);
-  }, [dispatch, setIsLoading, setError]);
+    setIsRefreshing(false);
+  }, [dispatch, setIsRefreshing, setError]);
 
   useEffect(() => {
    const eventListenersub = props.navigation.addListener('willFocus' , loadProducts)
@@ -41,8 +42,10 @@ const ProductsOverviewScreen = props => {
    }
   } , [loadProducts])
 
-  useEffect(() => {
-    loadProducts();
+  useEffect(async () => {
+    setIsLoading(true);
+    await loadProducts();
+    setIsLoading(false);
   } , [dispatch, loadProducts]);
 
   const selectItemHandler = (id, title) => {
@@ -84,6 +87,8 @@ const ProductsOverviewScreen = props => {
 
   return (
     <FlatList
+    onRefresh={loadProducts}
+    refreshing={isRefreshing}
       data={products}
       keyExtractor={item => item.id}
       renderItem={itemData => (
